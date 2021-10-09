@@ -79,8 +79,6 @@ public class Producto {
         System.out.print("Ingrese el codigo del producto a buscar: ");
         codigo = teclado.next();
 
-        listaProductos.;
-
 
     }
 

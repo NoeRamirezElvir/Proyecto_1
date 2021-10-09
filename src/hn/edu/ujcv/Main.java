@@ -31,15 +31,8 @@ public class Main {
                 switch(opcion){
                     case 1:
                         //Agregar productos
-                       do{
                            Producto producto = new Producto();
                            producto.agregarProducto(listaProductos);
-                           System.out.println("----------------------------------");
-                           producto.visualizarProducto(listaProductos);
-                           System.out.println("----------------------------------");
-                           System.out.println("Agregar otro producto S/N");
-                           respuesta2 = teclado.next();
-                       }while(respuesta2.equalsIgnoreCase("S"));
                         break;
                     case 2:
                         //Agregar cliente
