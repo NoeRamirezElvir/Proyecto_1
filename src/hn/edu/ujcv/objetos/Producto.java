@@ -75,9 +75,16 @@ public class Producto {
     }
     public void buscarProducto(ArrayList<Producto> listaProductos){
         Scanner teclado = new Scanner(System.in).useDelimiter("\n");
-        String codigo;
+        String codigo,codigoLista,pruebaCodigo,nombre;
         System.out.print("Ingrese el codigo del producto a buscar: ");
         codigo = teclado.next();
+        for (int i= 0;  i< listaProductos.size() ; ++i) {
+            Producto productos = new Producto();
+            productos = listaProductos.get(i);
+            pruebaCodigo = productos.getCodigo();
+            nombre = productos.getNombre();
+            System.out.println(nombre +" "+ pruebaCodigo);
+        }
 
 
     }

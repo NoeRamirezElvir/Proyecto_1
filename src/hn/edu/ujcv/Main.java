@@ -25,7 +25,7 @@ public class Main {
                 System.out.print("3 - Agregar empleado. ");
                 System.out.println("  6 - Visualizar factura. ");
                 System.out.println("Seleccione una opcion.");
-                System.out.println(" > ");
+                System.out.print(" > ");
                 opcion = teclado.nextInt();
 
                 switch(opcion){
@@ -33,6 +33,7 @@ public class Main {
                         //Agregar productos
                            Producto producto = new Producto();
                            producto.agregarProducto(listaProductos);
+                           producto.buscarProducto(listaProductos);
                         break;
                     case 2:
                         //Agregar cliente
