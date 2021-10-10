@@ -2,7 +2,6 @@ package hn.edu.ujcv.objetos;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Producto {
@@ -46,47 +45,66 @@ public class Producto {
     }
 
     public void agregarProducto(ArrayList<Producto> listaProductos){
-        Producto productos = new Producto();
+        Producto producto = new Producto();
         Scanner teclado = new Scanner(System.in).useDelimiter("\n");
         String  codigo,nombre;
         double  precio;
-        int     stock;
-        System.out.print("Ingrese codigo del producto: ");
-        codigo = teclado.next();
-        productos.setCodigo(codigo);
+        int     stock,contador;
+        do{
+            System.out.print("Ingrese el codigo del producto: ");
+            codigo = teclado.next();
+            contador = validarCodigo(listaProductos, codigo);
+            System.out.println(contador);
+        }while(contador > 0);
+        producto.setCodigo(codigo);
         System.out.print("Ingrese el nombre del producto: ");
         nombre = teclado.next();
-        productos.setNombre(nombre);
+        producto.setNombre(nombre);
         System.out.print("Ingrese el precio del producto: ");
         precio = teclado.nextDouble();
-        productos.setPrecio(precio);
+        producto.setPrecio(precio);
         System.out.print("Ingrese el stock del producto: ");
         stock = teclado.nextInt();
-        productos.setStock(stock);
-        listaProductos.add(productos);
+        producto.setStock(stock);
+        listaProductos.add(producto);
     }
-    public void visualizarProducto(ArrayList<Producto> listaProductos){
+
+    public int validarCodigo(ArrayList<Producto> listaProductos, String codigo){
+        int contador = 0;
+        for (Producto listaProducto : listaProductos) {
+            if (codigo.equals(listaProducto.getCodigo())) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public void visualizarProductos(ArrayList<Producto> listaProductos){
+        //System.out.println("Codigo " + " Nombre " + " Precio " + " Stock");
         for (Producto item: listaProductos){
-            System.out.println("Codigo del producto: " + item.getCodigo() +
-                    " Nombre: " + item.getNombre() +
-                    " Precio: " + item.getPrecio() +
-                    " Stock: " + item.getStock());
+            System.out.println("» " + item.getCodigo() +
+                    "  " + item.getNombre() +
+                    "  " + item.getPrecio() +
+                    "  " + item.getStock());
         }
     }
+
     public void buscarProducto(ArrayList<Producto> listaProductos){
         Scanner teclado = new Scanner(System.in).useDelimiter("\n");
-        String codigo,codigoLista,pruebaCodigo,nombre;
+        String  codigo,codigoLista,nombre;
+        double  precio;
+        int     stock;
         System.out.print("Ingrese el codigo del producto a buscar: ");
         codigo = teclado.next();
-        for (int i= 0;  i< listaProductos.size() ; ++i) {
-            Producto productos = new Producto();
-            productos = listaProductos.get(i);
-            pruebaCodigo = productos.getCodigo();
-            nombre = productos.getNombre();
-            System.out.println(nombre +" "+ pruebaCodigo);
+        for (Producto listaProducto : listaProductos) {
+            if(codigo.equals(listaProducto.getCodigo())) {
+                codigoLista = listaProducto.getCodigo();
+                nombre = listaProducto.getNombre();
+                precio = listaProducto.getPrecio();
+                stock = listaProducto.getStock();
+                System.out.println("·" + codigoLista + " " + nombre + " " + precio + " " + stock);
+            }
         }
-
-
     }
 
 
