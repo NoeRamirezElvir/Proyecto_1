@@ -18,28 +18,28 @@ public class Cliente {
         this.categoria    = pCategoria;
     }
 
-    public long getIdentidad() {
+    public long   getIdentidad() {
         return identidad;
     }
-    public void setIdentidad(long identidad) {
+    public void   setIdentidad(long identidad) {
         this.identidad = identidad;
     }
     public String getNombre() {
         return nombre;
     }
-    public void setNombre(String nombre) {
+    public void   setNombre(String nombre) {
         this.nombre = nombre;
     }
     public String getFechaIngreso() {
         return fechaIngreso;
     }
-    public void setFechaIngreso(String fechaIngreso) {
+    public void   setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
     public String getCategoria() {
         return categoria;
     }
-    public void setCategoria(String categoria) {
+    public void   setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
@@ -47,24 +47,24 @@ public class Cliente {
     public void agregarCliente(ArrayList<Cliente> listaClientes){
         Scanner teclado = new Scanner(System.in).useDelimiter("\n");
         Cliente cliente = new Cliente();
-        String nombre,fecha,categoria;
-        int contador;
         long identidad;
+
         do{
             System.out.print("Ingrese el numero de identidad del cliente: ");
             identidad = teclado.nextLong();
-            contador = validarIdentidad(listaClientes,identidad);
-        }while(contador > 0);
+
+            if (validarIdentidad(listaClientes,identidad) > 0)
+                System.out.println("No. Identidad ya existe! ");
+
+        }while(validarIdentidad(listaClientes,identidad) > 0);
+
         cliente.setIdentidad(identidad);
         System.out.print("Ingrese el nombre del cliente: ");
-        nombre = teclado.next();
-        cliente.setNombre(nombre);
+        cliente.setNombre(teclado.next());
         System.out.print("Escriba la fecha de ingreso (dd/mm/yyyy): ");
-        fecha = teclado.next();
-        cliente.setFechaIngreso(fecha);
+        cliente.setFechaIngreso(teclado.next());
         System.out.print("Ingrese la categoria del cliente: ");
-        categoria = teclado.next();
-        cliente.setCategoria(categoria);
+        cliente.setCategoria(teclado.next());
         listaClientes.add(cliente);
     }
     public int validarIdentidad(ArrayList<Cliente> listaClientes,long identidad){
