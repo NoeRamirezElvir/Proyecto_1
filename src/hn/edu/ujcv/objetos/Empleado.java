@@ -21,25 +21,25 @@ public class Empleado {
     public String getCodigo() {
         return codigo;
     }
-    public void setCodigo(String codigo) {
+    public void   setCodigo(String codigo) {
         this.codigo = codigo;
     }
     public String getNombre() {
         return nombre;
     }
-    public void setNombre(String nombre) {
+    public void   setNombre(String nombre) {
         this.nombre = nombre;
     }
     public String getFechaIngreso() {
         return fechaIngreso;
     }
-    public void setFechaIngreso(String fechaIngreso) {
+    public void   setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
     public String getPuesto() {
         return puesto;
     }
-    public void setPuesto(String puesto) {
+    public void   setPuesto(String puesto) {
         this.puesto = puesto;
     }
 
@@ -47,22 +47,22 @@ public class Empleado {
         Scanner teclado = new Scanner(System.in).useDelimiter("\n");
         Empleado empleado = new Empleado();
         String codigo,nombre,fecha,puesto;
-        int contador;
         do {
             System.out.print("Ingrese el codigo de empleado: ");
+
             codigo = teclado.next();
-            contador = validarCodigo(listaEmpleados,codigo);
-        }while(contador>0);
+
+            if (validarCodigo(listaEmpleados,codigo)>0)
+                System.out.println("Codigo ya existe! ");
+
+        }while(validarCodigo(listaEmpleados,codigo)>0);
         empleado.setCodigo(codigo);
         System.out.print("Ingrese el nombre del empleado: ");
-        nombre = teclado.next();
-        empleado.setNombre(nombre);
+        empleado.setNombre(teclado.next());
         System.out.print("Escriba la fecha de ingreso (dd/mm/yyyy): ");
-        fecha = teclado.next();
-        empleado.setFechaIngreso(fecha);
+        empleado.setFechaIngreso(teclado.next());
         System.out.print("Ingrese el puesto del empleado: ");
-        puesto = teclado.next();
-        empleado.setPuesto(puesto);
+        empleado.setPuesto(teclado.next());
         listaEmpleados.add(empleado);
     }
     public int validarCodigo(ArrayList<Empleado> listaEmpleados,String codigo){

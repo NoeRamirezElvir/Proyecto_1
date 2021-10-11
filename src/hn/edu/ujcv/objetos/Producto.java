@@ -45,17 +45,20 @@ public class Producto {
     }
 
     public void agregarProducto(ArrayList<Producto> listaProductos){
+        Scanner  teclado  = new Scanner(System.in).useDelimiter("\n");
         Producto producto = new Producto();
-        Scanner teclado = new Scanner(System.in).useDelimiter("\n");
-        String  codigo,nombre;
-        double  precio;
-        int     stock,contador;
+        String   codigo,nombre;
+        double   precio;
+        int      stock,contador;
+
         do{
             System.out.print("Ingrese el codigo del producto: ");
             codigo = teclado.next();
             contador = validarCodigo(listaProductos, codigo);
-            System.out.println(contador);
+            if (contador>0)
+                System.out.println("Codigo ya existe! ");
         }while(contador > 0);
+
         producto.setCodigo(codigo);
         System.out.print("Ingrese el nombre del producto: ");
         nombre = teclado.next();
